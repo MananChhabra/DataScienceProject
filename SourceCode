@@ -1,0 +1,34 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
+import seaborn as sns
+import warnings
+%matplotlib notebook
+
+messi=pd.read_csv("https://raw.githubusercontent.com/MananChhabra/testpy/master/MessiFinal.csv",skiprows=1)
+
+messi1=messi[['Season','League Goals']]
+messi1.drop([16],inplace=True)
+
+messi2=messi[['Season','League Apps']]
+messi2.drop([16],inplace=True)
+
+ronaldo=pd.read_csv('https://raw.githubusercontent.com/chirag3110/extract/master/ronaldo.csv')
+
+ronaldo1=ronaldo[['Season','League Goals']]
+ronaldo1.drop([16],inplace=True)
+
+ronaldo2=ronaldo[['Season','League Apps']]
+ronaldo2.drop([16],inplace=True)
+
+mrgoals=pd.merge(messi1,ronaldo1, on='Season')
+mrgoals.rename(columns={'League Goals_x':'MessiGoals','League Goals_y':'RonaldoGoals'},inplace=True)
+ax=mrgoals.plot.bar(x=messi1['Season'],color=['blue','red'],figsize=(7.5,3.75),alpha=0.7);
+
+mrapps=pd.merge(messi2,ronaldo2, on='Season')
+mrapps.rename(columns={'League Apps_x':'MessiApps','League Apps_y':'RonaldoApps'},inplace=True)
+mrapps.plot(ax=ax,color=['blue','red'],alpha=0.7);
+plt.xticks(rotation=17)
+plt.ylabel('Goals')
+plt.xlabel('Season')
+plt.title('Change over the last 17 years(2004-till date) in number of goals scored by two of the \n greatest footballers Lionel Messi and Cristiano Ronaldo')
