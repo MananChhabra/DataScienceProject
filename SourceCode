@@ -5,7 +5,7 @@ import seaborn as sns
 import warnings
 %matplotlib notebook
 
-messi=pd.read_csv("https://raw.githubusercontent.com/MananChhabra/testpy/master/MessiFinal.csv",skiprows=1)
+messi=pd.read_csv("https://raw.githubusercontent.com/MananChhabra/data-files-for-football-sport-analysis/master/MessiFinal.csv",skiprows=1)
 
 messi1=messi[['Season','League Goals']]
 messi1.drop([16],inplace=True)
